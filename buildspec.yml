@@ -15,12 +15,12 @@ phases:
     commands:
       - echo Building the docker images
       - docker build -t users .
-      - docker tag parkplatz-reports:latest 054821236114.dkr.ecr.us-east-1.amazonaws.com/users
+      - docker tag users:latest 054821236114.dkr.ecr.us-east-1.amazonaws.com/users
   post_build:
     commands:
       - echo Pushing to ECR
       - docker push 054821236114.dkr.ecr.us-east-1.amazonaws.com/users:latest
-      - printf '[{"name":"parkplatz-reports","imageUri":"%s"}]' 054821236114.dkr.ecr.us-east-1.amazonaws.com/users > imagedefinitions.json
+      - printf '[{"name":"users","imageUri":"%s"}]' 054821236114.dkr.ecr.us-east-1.amazonaws.com/users > imagedefinitions.json
       
 artifacts:
     files: imagedefinitions.json
